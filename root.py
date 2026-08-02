@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import sqlite3
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="html", static_folder="css")
 
 
 @app.route('/')
