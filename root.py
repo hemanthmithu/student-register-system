@@ -4,8 +4,8 @@ import sqlite3
 app = Flask(__name__)
 app.secret_key = "mysecretkey"
 
-ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "admin123"
+ADMIN_USERNAME = "mithun"
+ADMIN_PASSWORD = "5599"
 
 
 @app.route('/')
