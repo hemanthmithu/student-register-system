@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Your Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+
+<body>
+
+<h1>Dashboard</h1>
+<h2>Student Information</h2>
+
+<form action="/dashboard" method="POST">
+
+    <label>Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+
+    <label>Course:</label><br>
+    <select id="Course" name="course" required>
+        <option value="">Select Course</option>
+        <option value="BCA">BCA</option>
+        <option value="BSc">BSc</option>
+        <option value="BCom">BCom</option>
+        <option value="BBA">BBA</option>
+        <option value="BE">BE</option>
+    </select><br><br>
+
+
+    <label>Semester:</label><br>
+    <input type="number" id="Semester" name="semester" required><br><br>
+
+
+    <label>Suggestion:</label><br>
+    <textarea
+        id="description"
+        name="suggestion"
+        rows="5"
+        cols="40"
+        placeholder="Enter your suggestion here..."
+        required></textarea><br><br>
+
+
+    <button type="submit">Submit</button>
+
+</form>
+
+
+<button onclick="logout()">Logout</button>
+
+
+<script>
+
+function logout()
+{
+    alert("Logged out successfully.");
+    window.location.href="/";
+}
+
+
+// Enter key navigation
+
+document.getElementById("name").addEventListener("keydown", function(event){
+    if(event.key==="Enter"){
+        event.preventDefault();
+        document.getElementById("Course").focus();
+    }
+});
+
+
+document.getElementById("Course").addEventListener("keydown", function(event){
+    if(event.key==="Enter"){
+        event.preventDefault();
+        document.getElementById("Semester").focus();
+    }
+});
+
+
+document.getElementById("Semester").addEventListener("keydown", function(event){
+    if(event.key==="Enter"){
+        event.preventDefault();
+        document.getElementById("description").focus();
+    }
+});
+
+</script>
+
+
+</body>
+</html>

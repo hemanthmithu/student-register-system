@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Credentials</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='register.css')}}">
+</head>
+<body>
+
+<form>
+    <label>Username:</label><br>
+    <input type="text" id="username"><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" id="email"><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" id="password"><br>
+    <span id="passwordError" style="color:red;"></span><br><br>
+
+    <label>Confirm Password:</label><br>
+    <input type="password" id="confirm"><br>
+    <span id="confirmError" style="color:red;"></span><br><br>
+
+    <button type="button" onclick="Registeruser()">Register</button>
+</form>
+
+<script>
+function Registeruser() {
+
+    document.getElementById("passwordError").innerText = "";
+    document.getElementById("confirmError").innerText = "";
+
+    let username = document.getElementById("username").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value.trim();
+    let confirm = document.getElementById("confirm").value.trim();
+
+    let pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+
+    if (username === "") {
+        alert("Please enter a username");
+        document.getElementById("username").focus();
+        return;
+    }
+
+    if (email === "") {
+        alert("Please enter an email");
+        document.getElementById("email").focus();
+        return;
+    }
+
+    if (!pattern.test(password)) {
+        document.getElementById("passwordError").innerText =
+            "Password must contain 8+ characters, uppercase, lowercase, digit and special character.";
+
+        document.getElementById("password").value = "";
+        document.getElementById("confirm").value = "";
+        document.getElementById("password").focus();
+        return;
+    }
+
+    if (password !== confirm) {
+        document.getElementById("confirmError").innerText =
+            "Passwords do not match.";
+
+        document.getElementById("confirm").value = "";
+        document.getElementById("confirm").focus();
+        return;
+    }
+
+    alert("Information saved successfully");
+
+    window.location.href = "/dashboard";
+}
+
+document.getElementById("username").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("email").focus();
+    }
+});
+
+document.getElementById("email").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("password").focus();
+    }
+});
+
+document.getElementById("password").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("confirm").focus();
+    }
+});
+
+document.getElementById("confirm").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        Registeruser();
+    }
+});
+</script>
+
+</body>
+</html>

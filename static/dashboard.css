@@ -1,0 +1,139 @@
+/* Animated Background */
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background: linear-gradient(
+        -45deg,
+        #4facfe,
+        #00f2fe,
+        #667eea,
+        #764ba2
+    );
+
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+
+    min-height: 100vh;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Form Container */
+.form-container {
+    width: 400px;
+    margin: 30px auto;
+    padding: 25px;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Headings */
+h1 {
+    text-align: center;
+    color: black;
+    margin-bottom: 5px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 18px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: black;
+}
+
+/* Inputs */
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+
+    border: 1px solid #bbb;
+    border-radius: 8px;
+
+    box-sizing: border-box;
+
+    font-size: 15px;
+    color: black;
+    background-color: white;
+}
+
+/* Focus Effect */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #4facfe;
+    box-shadow: 0 0 8px rgba(79, 172, 254, 0.4);
+}
+
+/* Suggestion Box */
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Buttons */
+.submit-btn,
+.logout-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Submit Button */
+.submit-btn {
+    background: #28a745;
+}
+
+.submit-btn:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+/* Logout Button */
+.logout-btn {
+    background: #dc3545;
+}
+
+.logout-btn:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+}
