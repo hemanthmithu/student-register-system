@@ -1,7 +1,12 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
 
 app = Flask(__name__)
+app.secret_key = "mysecretkey"
+
+ADMIN_USERNAME = "admin"
+ADMIN_PASSWORD = "admin123"
+
 
 @app.route('/')
 def login():
@@ -39,8 +44,28 @@ def dashboard():
     return render_template('dashboard.html')
 
 
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+
+    if request.method == 'POST':
+
+        username = request.form['username']
+        password = request.form['password']
+
+        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+            session['admin'] = True
+            return redirect(url_for('view'))
+
+        return "Invalid Username or Password"
+
+    return render_template('admin.html')
+
+
 @app.route('/view')
 def view():
+
+    if not session.get('admin'):
+        return redirect(url_for('admin'))
 
     conn = sqlite3.connect("students.db")
     cursor = conn.cursor()
@@ -51,6 +76,12 @@ def view():
     conn.close()
 
     return render_template("view.html", records=records)
+
+
+@app.route('/logout')
+def logout():
+    session.pop('admin', None)
+    return redirect(url_for('admin'))
 
 
 if __name__ == "__main__":
